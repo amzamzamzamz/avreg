@@ -6,8 +6,8 @@ ENV DBDIR=/avreg_db
 RUN mkdir $MEDIADIR && ln -s $MEDIADIR /var/spool/avreg
 
 VOLUME $DBDIR $MEDIADIR
-
-# RUN apt-get install -y --force-yes apt-utils
+RUN apt-get update
+RUN apt-get install -y --force-yes apt-utils
 RUN apt-get install -y --force-yes wget
 
 # add avreg repository to application sources
