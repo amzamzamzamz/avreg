@@ -1,1 +1,1 @@
-# docker-avreg
+# AVReg
