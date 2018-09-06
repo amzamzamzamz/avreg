@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch
 
 ENV MEDIADIR=/avreg_media
 ENV DBDIR=/avreg_db
@@ -8,7 +8,7 @@ RUN mkdir $MEDIADIR && ln -s $MEDIADIR /var/spool/avreg
 VOLUME $DBDIR $MEDIADIR
 
 # add avreg repository to application sources
-RUN echo "deb http://avreg.net/repos/6.1/debian/ jessie main contrib non-free" >> /etc/apt/sources.list
+RUN echo "deb http://avreg.net/repos/6.3-html5/debian/ stretch main contrib non-free" >> /etc/apt/sources.list
 
 # remove policy file to allow start services while apt-get install
 RUN rm -rf /usr/sbin/policy-rc.d
