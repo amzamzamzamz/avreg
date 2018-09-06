@@ -7,10 +7,12 @@ RUN mkdir $MEDIADIR && ln -s $MEDIADIR /var/spool/avreg
 
 VOLUME $DBDIR $MEDIADIR
 
+RUN apt-get install -y --force-yes apt-utils
+RUN apt-get install -y --force-yes wget
+
 # add avreg repository to application sources
 RUN echo "deb http://avreg.net/repos/6.3-html5/debian/ stretch main contrib non-free" >> /etc/apt/sources.list
 RUN wget -q -O - http://avreg.net/repos/avreg.public.key | apt-key add -
-RUN apt-get install -y --force-yes apt-utils
 
 # remove policy file to allow start services while apt-get install
 RUN rm -rf /usr/sbin/policy-rc.d
