@@ -27,3 +27,4 @@ ADD entry_point.sh /
 CMD ["/entry_point.sh"]
 
 EXPOSE 80
+
