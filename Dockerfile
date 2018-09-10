@@ -18,8 +18,8 @@ RUN echo "mysql-server mysql-server/root_password password 12345" | debconf-set-
 RUN echo "mysql-server mysql-server/root_password_again password 12345" | debconf-set-selections
 
 # install avreg and remove any pid ghosts of it's service by stopping the service
-RUN DEBIAN_FRONTEND="noninteractive" \
-	apt-get update && apt-get install -y avreg-server-mysql \
+RUN DEBIAN_FRONTEND=noninteractive \
+	apt-get update && apt-get install -y --force-yes avreg-server-mysql \
 	&& service avreg stop
 
 # entry point will start mysql, apache2, and avreg services and stop them as well on demand
