@@ -12,7 +12,7 @@ VOLUME $DBDIR $MEDIADIR
 RUN echo "deb http://avreg.net/repos/6.3-html5/debian/ stretch main contrib non-free" >> /etc/apt/sources.list
 
 # remove policy file to allow start services while apt-get install
-RUN rm -rf /usr/sbin/policy-rc.d
+# RUN rm -rf /usr/sbin/policy-rc.d
 
 # prepare answers to install mysql
 RUN echo "mysql-server-5.8 mysql-server/root_password password 12345" | debconf-set-selections
