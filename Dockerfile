@@ -20,7 +20,10 @@ RUN echo "mysql-server mysql-server/root_password_again password 12345" | debcon
 
 # install avreg and remove any pid ghosts of it's service by stopping the service
 # RUN DEBIAN_FRONTEND=noninteractive \
-RUN apt-get install -f && apt-get update && apt-get install -y --allow-unauthenticated avreg-server-mysql && service avreg stop
+RUN apt-get install -f 
+RUN apt-get update 
+RUN apt-get install -y --allow-unauthenticated avreg-server-mysql 
+RUN service avreg stop
 
 # entry point will start mysql, apache2, and avreg services and stop them as well on demand
 ADD entry_point.sh /
