@@ -2,6 +2,7 @@ FROM debian:stretch
 
 ENV MEDIADIR=/avreg_media
 ENV DBDIR=/avreg_db
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN mkdir $MEDIADIR && ln -s $MEDIADIR /var/spool/avreg
 
@@ -18,9 +19,8 @@ RUN echo "mysql-server mysql-server/root_password password 12345" | debconf-set-
 RUN echo "mysql-server mysql-server/root_password_again password 12345" | debconf-set-selections
 
 # install avreg and remove any pid ghosts of it's service by stopping the service
-RUN DEBIAN_FRONTEND=noninteractive \
-	apt-get install -f && apt-get update && apt-get install -y --allow-unauthenticated avreg-server-mysql \
-	&& service avreg stop
+# RUN DEBIAN_FRONTEND=noninteractive \
+RUN apt-get install -f && apt-get update && apt-get install -y --allow-unauthenticated avreg-server-mysql && service avreg stop
 
 # entry point will start mysql, apache2, and avreg services and stop them as well on demand
 ADD entry_point.sh /
