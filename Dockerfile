@@ -19,6 +19,7 @@ RUN echo "mysql-server mysql-server/root_password_again password 12345" | debcon
 
 # install avreg and remove any pid ghosts of it's service by stopping the service
 RUN DEBIAN_FRONTEND=noninteractive \
+	apt-get install -f && sudo dpkg --configure -a \
 	apt-get update && apt-get install -y --allow-unauthenticated avreg-server-mysql \
 	&& service avreg stop
 
