@@ -15,14 +15,14 @@ RUN echo "deb http://avreg.net/repos/6.3-html5/debian/ stretch main contrib non-
 RUN rm -rf /usr/sbin/policy-rc.d
 
 # prepare answers to install mysql
-# RUN echo "mysql-server-5.8 mysql-server/root_password password 12345" | debconf-set-selections
-# RUN echo "mysql-server-5.8 mysql-server/root_password_again password 12345" | debconf-set-selections
+RUN echo "mysql-server-5.8 mysql-server/root_password password 12345" | debconf-set-selections
+RUN echo "mysql-server-5.8 mysql-server/root_password_again password 12345" | debconf-set-selections
 
 # install avreg and remove any pid ghosts of it's service by stopping the service
 # RUN DEBIAN_FRONTEND=noninteractive \
 RUN apt-get install -f 
 RUN apt-get update 
-RUN apt-get install --allow-unauthenticated -y avreg-server-mysql 
+RUN apt-get install -y avreg-server-mysql 
 RUN service avreg stop
 
 # entry point will start mysql, apache2, and avreg services and stop them as well on demand
