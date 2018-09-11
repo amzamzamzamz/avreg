@@ -24,7 +24,7 @@ service mysql stop
 # create MEDIADIR and mapping
 MEDIADIR=/avreg_media
 if [ ! -f $MEDIADIR/initialized ]; then
-	mv /var/spool/avreg* $MEDIADIR
+	mv /var/spool/avreg/* $MEDIADIR
 	touch $MEDIADIR/initialized	
 fi
 rm -rf /var/spool/avreg
