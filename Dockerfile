@@ -11,6 +11,7 @@ VOLUME /avreg_db /avreg_media
 RUN echo "deb http://avreg.net/repos/6.3-html5/debian/ stretch main contrib non-free" >> /etc/apt/sources.list
 #======================
 ADD download.sh
+RUN bash download.sh
 
 #======================
 RUN wget -q -O - http://avreg.net/repos/avreg.public.key | apt-key add -
