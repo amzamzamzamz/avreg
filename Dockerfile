@@ -5,7 +5,8 @@ ENV DBDIR=/avreg_db
 
 RUN mkdir $MEDIADIR && ln -s $MEDIADIR /var/spool/avreg
 
-VOLUME $DBDIR $MEDIADIR
+#VOLUME $DBDIR $MEDIADIR
+VOLUME ["/avreg_db", "/avreg_media"]
 
 # add avreg repository to application sources
 RUN echo "deb http://avreg.net/repos/6.3-html5/debian/ stretch main contrib non-free" >> /etc/apt/sources.list
@@ -22,7 +23,7 @@ RUN apt-get update
 
 # install avreg and remove any pid ghosts of it's service by stopping the service
 # RUN DEBIAN_FRONTEND=noninteractive
-RUN apt-get install -y --force-yes avreg-server-mysql 
+RUN apt-get install -y avreg-server-mysql 
 RUN service avreg stop
 
 # entry point will start mysql, apache2, and avreg services and stop them as well on demand
