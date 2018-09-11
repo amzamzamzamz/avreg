@@ -9,6 +9,8 @@ VOLUME $DBDIR $MEDIADIR
 
 # add avreg repository to application sources
 RUN echo "deb http://avreg.net/repos/6.3-html5/debian/ stretch main contrib non-free" >> /etc/apt/sources.list
+RUN apt-get install -y wget 
+RUN wget -q -O - http://avreg.net/repos/avreg.public.key | sudo apt-key add -
 RUN apt-get update
 
 # remove policy file to allow start services while apt-get install
